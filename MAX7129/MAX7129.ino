@@ -2,7 +2,7 @@
 #include "LedZaslon.h"
 
 /* cas osvezevanja zaslona*/
-#define casCakanja 100 //1000 je ena sekunda, cas je v milisekundah
+#define casCakanja 10 //1000 je ena sekunda, cas je v milisekundah
 
 #define CS 10 //CS z zaslona povezemo na pin 10 arduina
 #define CLK 11 //CLK z zaslona povezemo na pin 11 arduina
@@ -23,12 +23,18 @@ void setup() {
  gre v naslednjo vrstico
  */
 void test() {
-  for(int vrstica=0;vrstica<8;vrstica++) {
-    for(int stolpec=0;stolpec<8;stolpec++) {
-      delay(casCakanja);
-      nastaviLucko(vrstica,stolpec,true);
-      delay(casCakanja);
+  while (true) {
+    for(int vrstica=0;vrstica<8;vrstica++) {
+      for(int stolpec=0;stolpec<8;stolpec++) {
+        delay(casCakanja);
+        nastaviLucko(vrstica,stolpec,true);
+        delay(casCakanja);
+      }
     }
+    if (rotacija==SPODAJ)
+      rotacija=LEVO;
+    else rotacija++;
+    pobrisiZaslon();
   }
 }
 
@@ -422,7 +428,8 @@ void nal24() {
   
 
 void loop() {
-  nal24();
+//  nal24();
+  test();
 //  pobrisiZaslon();
 }
 
