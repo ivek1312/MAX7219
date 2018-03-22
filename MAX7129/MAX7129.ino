@@ -22,7 +22,6 @@ void loop() {
   pavza(casCakanja);
   ugasniLucko(0,0);
   pavza(casCakanja);  
-test();
 }
 
 
